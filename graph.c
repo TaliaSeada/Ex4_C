@@ -1,8 +1,6 @@
 #include "graph.h"
 
-typedef struct GRAPH_NODE_ *pnode {
-
-} graphNode;
+typedef struct GRAPH_NODE_ *pnode ;
 
 void build_graph_cmd(pnode *head){
 
