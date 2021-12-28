@@ -2,16 +2,17 @@
 
 #define __LIST_H__
 
-typedef struct Node {
+typedef struct Edge {
     int data;
-    struct Node* next;
-} Node;
+    struct Edge* next;
+} Edge;
 
-Node* create_node(int);
-void add_first(Node**, int);
-void add_last(Node**, int);
-void delete(Node**);
-void print_list(Node*);
-void remove_node(Node**, int);
+
+Edge* create_node(int);
+void add_first(Edge**, int);
+void add_last(Edge**, int);
+void delete(Edge**);
+void print_list(Edge*);
+void remove_node(Edge**, int);
 
 #endif

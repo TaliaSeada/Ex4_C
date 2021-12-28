@@ -1,14 +1,7 @@
 #ifndef __GRAPH__
 #define __GRAPH__
 
-typedef struct GRAPH_NODE_ *pnode;
-
-// LinkedList of edges
-typedef struct edge_ {
-    int weight;
-    pnode endpoint;
-    struct edge_ *next;
-} edge, *pedge; //head of the list
+typedef struct edge_ *pedge;
 
 // LinkedList of nodes
 typedef struct GRAPH_NODE_ {
@@ -17,8 +10,9 @@ typedef struct GRAPH_NODE_ {
     struct GRAPH_NODE_ *next;
 } node, *pnode; //head of the list
 
+pnode create_node(int id);
 void build_graph_cmd(pnode *head);
-void insert_node_cmd(pnode *head);
+void insert_node_cmd(pnode *head, pnode node);
 void delete_node_cmd(pnode *head);
 void printGraph_cmd(pnode head); //for self debug
 void deleteGraph_cmd(pnode* head);

@@ -2,15 +2,15 @@
 #include <stdio.h>
 #include "LinkedList.h"
 
-Node* create_node(int data){
-    Node* n = (Node*)malloc(sizeof(Node));
+Edge* create_node(int data){
+    Edge* n = (Edge*)malloc(sizeof(Edge));
     if(n)
         n->data=data;
     return n;
 }
 
-void add_first(Node** H, int data){
-    Node* n = create_node(data);
+void add_first(Edge** H, int data){
+    Edge* n = create_node(data);
     if(!n){
         printf("no memory!");
         return;
@@ -19,8 +19,8 @@ void add_first(Node** H, int data){
     *H = n;
 }
 
-void add_last(Node** H, int data){
-    Node* n = create_node(data);
+void add_last(Edge** H, int data){
+    Edge* n = create_node(data);
     if(!n){
         printf("no memory!");
         return;
@@ -29,21 +29,21 @@ void add_last(Node** H, int data){
         *H = n;
         return;
     }
-    Node * tmp = *H;
+    Edge* tmp = *H;
     while(tmp->next)
         tmp = tmp->next;
     tmp->next = n;
 }
 
-void delete(Node** H){
-while(*H){
-Node* tmp = *H;
-*H = (*H)->next;
-free(tmp);
-}
+void delete(Edge** H){
+    while(*H){
+        Edge* tmp = *H;
+        *H = (*H)->next;
+        free(tmp);
+    }
 }
 
-void print_list(Node* H){
+void print_list(Edge* H){
     while(H){
         printf("%d -> ", H->data);
         H = H->next;
@@ -51,20 +51,20 @@ void print_list(Node* H){
     printf("||\n");
 }
 
-void remove_node(Node** H, int data){
+void remove_node(Edge** H, int data){
     if(!*H)
         return;
     if((*H)->data == data){
-        Node *tmp = *H;
+        Edge *tmp = *H;
         *H = (*H)->next;
         free(tmp);
     }
-    Node* tmp = *H;
+    Edge* tmp = *H;
     while(tmp->next && tmp->next->data != data)
         tmp = tmp->next;
     if(!tmp->next)
         return;
-    Node *tmp2 = tmp->next;
+    Edge *tmp2 = tmp->next;
     tmp->next = tmp->next->next;
     free(tmp2);
 }
