@@ -1,5 +1,5 @@
-#include <malloc.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "Edge.h"
 
 edge* create_edge(pnode node, int weight){
@@ -52,7 +52,7 @@ void remove_edge(edge** H, int dest){
         free(tmp);
     }
     edge* tmp = *H;
-    while(tmp->next && tmp->next->endpoint->node_num != data)
+    while(tmp->next && tmp->next->endpoint->node_num != dest)
         tmp = tmp->next;
     if(!tmp->next)
         return;
