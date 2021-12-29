@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include "graph.h"
 #include "Edge.h"
 
@@ -66,17 +67,18 @@ void delete_node_cmd(pnode* head, pnode node){
         return;
     }
     //free edges
-    pedge edge_tmp = tmp ->next->edges;
-    while(edge_tmp -> next){
+    pedge edge_tmp = tmp->next->edges;
+    while(edge_tmp){
         pedge remove_edges = edge_tmp;
         edge_tmp = edge_tmp -> next;
         free(remove_edges);
     }
+    tmp -> next -> edges = NULL;
     //remove node
-    pnode tmp2 = tmp->next;
-    tmp->next = tmp->next->next;
+    pnode tmp2 = tmp -> next;
+    tmp -> next = tmp -> next -> next;
     pnode tmp3 = *head;
-    while(tmp3 -> next){
+    while(tmp3){
         remove_edge(&(tmp3->edges), node->node_num);
         tmp3 = tmp3 -> next;
     }

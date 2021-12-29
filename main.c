@@ -70,15 +70,21 @@ int main() {
                         break;
                     }
                 }
-
+                printGraph_cmd(graph);
                 break;
             case 'B':
                 printf("B");
                 read = getchar();
+
                 break;
             case 'D':
-                printf("D");
                 read = getchar();
+                int node;
+                scanf("%d", &node);
+                pnode n = create_node(node);
+                delete_node_cmd(&graph, n);
+                printGraph_cmd(graph);
+                free(n);
                 break;
             case 'S':
                 printf("S");
@@ -98,8 +104,6 @@ int main() {
         }
     }
 
-    printGraph_cmd(graph);
     deleteGraph_cmd(&graph);
-    printGraph_cmd(graph);
     return 0;
 }
