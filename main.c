@@ -9,7 +9,7 @@ int main() {
     //scanf("%c", &read);
     int numOfNodes, i, id, dest, weight;
     char n;
-    while(65<=read<=90) {
+    while(65<=read && read<=90) {
         switch (read) {
             case 'A':
                 printf("A");
