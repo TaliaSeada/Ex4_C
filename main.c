@@ -6,14 +6,12 @@ int main() {
     //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2
     node *graph = NULL;
     int read=getchar();
-    //scanf("%c", &read);
     int numOfNodes, i, id, dest, weight;
     int succeed;
     char n;
     while(65<=read && read<=90) {
         switch (read) {
             case 'A':
-                // printf("A");
                 getchar();
                 scanf("%d", &numOfNodes);
                 scanf("%c", &n);
@@ -28,7 +26,6 @@ int main() {
                     // check if node exists
                     while (current_node) {
                         if (current_node->node_num == id) {
-                            //                        current_node=current_node->next;
                             break;
                         }
                         current_node = current_node->next;
@@ -53,7 +50,7 @@ int main() {
                         // if so
                         if (tmp) {
                             pnode node_dst = tmp;
-                            pedge new_edge = create_edge(node_dst, weight);
+//                            pedge new_edge = create_edge(node_dst, weight);
                             add(&current_node->edges, node_dst, weight);
                         }
                             // else create it
