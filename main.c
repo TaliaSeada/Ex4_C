@@ -3,7 +3,7 @@
 #include "Edge.c"
 
 int main() {
-    //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2
+    //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 t
     node *graph = NULL;
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
@@ -50,7 +50,6 @@ int main() {
                         // if so
                         if (tmp) {
                             pnode node_dst = tmp;
-//                            pedge new_edge = create_edge(node_dst, weight);
                             add(&current_node->edges, node_dst, weight);
                         }
                             // else create it
@@ -72,7 +71,6 @@ int main() {
                     }
                 }
 
-                printGraph_cmd(graph);
                 break;
             case 'B':
                 printf("B");
@@ -100,6 +98,8 @@ int main() {
         }
     }
 
-    free(graph);
+    printGraph_cmd(graph);
+    deleteGraph_cmd(&graph);
+    printGraph_cmd(graph);
     return 0;
 }

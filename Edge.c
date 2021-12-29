@@ -52,6 +52,9 @@ void remove_edge(edge** H, int dest){
         free(tmp);
     }
     edge* tmp = *H;
+    if(!tmp){
+        return;
+    }
     while(tmp->next && tmp->next->endpoint->node_num != dest)
         tmp = tmp->next;
     if(!tmp->next)

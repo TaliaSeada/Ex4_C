@@ -10,8 +10,9 @@ node* create_node(int id) {
         n->node_num = id;
         n->edges = NULL;
         n->next = NULL;
+        return n;
     }
-    return n;
+    exit(1);
 }
 
 void insert_node_cmd(node** head, pnode node){
@@ -36,14 +37,34 @@ void delete_node_cmd(pnode* head, pnode node){
     if((*head)->node_num == node->node_num){
         pnode tmp = *head;
         *head = (*head)->next;
-        free(tmp);
+        //free edges
+        pedge edge_tmp = tmp ->edges;
+        while(edge_tmp){
+            pedge remove_edges = edge_tmp;
+            edge_tmp = edge_tmp -> next;
+            free(remove_edges);
+        }
+        tmp ->edges = NULL;
+        //remove node
+        pnode tmp2 = tmp;
+        tmp = tmp->next;
+        pnode tmp3 = *head;
+        while(tmp3){
+            remove_edge(&(tmp3->edges), node->node_num);
+            tmp3 = tmp3 -> next;
+        }
+        free(tmp2);
+        if(!*head){
+            *head = NULL;
+        }
+        return;
     }
     pnode tmp = *head;
-    // TODO check memory leak on tmp
     while(tmp->next && tmp->next->node_num != node->node_num)
         tmp = tmp->next;
-    if(!tmp->next)
+    if(!tmp->next){
         return;
+    }
     //free edges
     pedge edge_tmp = tmp ->next->edges;
     while(edge_tmp -> next){
@@ -54,15 +75,17 @@ void delete_node_cmd(pnode* head, pnode node){
     //remove node
     pnode tmp2 = tmp->next;
     tmp->next = tmp->next->next;
-    free(tmp2);
     pnode tmp3 = *head;
     while(tmp3 -> next){
         remove_edge(&(tmp3->edges), node->node_num);
         tmp3 = tmp3 -> next;
     }
+    free(tmp2);
+    return;
 }
 
 void printGraph_cmd(pnode head){
+    // pnode tmp = head;
     while(head){
         printf("%d (", head -> node_num);
         print_list(head -> edges);
@@ -70,10 +93,13 @@ void printGraph_cmd(pnode head){
         head = head->next;
     }
     printf("||\n");
+    // free(tmp);
 }
 
 void deleteGraph_cmd(pnode* head){
-
+    while(*head){
+        delete_node_cmd(head, *head);
+    }
 }
 
 void shortsPath_cmd(pnode head){

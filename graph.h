@@ -1,8 +1,7 @@
 #ifndef __GRAPH__
 #define __GRAPH__
-#include "Edge.h"
 
-//typedef struct edge_ *pedge;
+typedef struct edge_ *pedge;
 
 // LinkedList of nodes
 typedef struct GRAPH_NODE_ {
