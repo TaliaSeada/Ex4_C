@@ -37,10 +37,10 @@ void delete(edge** H){
 
 void print_list(edge* H){
     while(H){
-        printf("%d -> ", H->weight);
+        printf("%d -> ", H->endpoint->node_num);
         H = H->next;
     }
-    printf("||\n");
+    printf("|");
 }
 
 void remove_edge(edge** H, int dest){

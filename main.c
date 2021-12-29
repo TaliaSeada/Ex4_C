@@ -8,16 +8,18 @@ int main() {
     int read=getchar();
     //scanf("%c", &read);
     int numOfNodes, i, id, dest, weight;
+    int succeed;
     char n;
     while(65<=read && read<=90) {
         switch (read) {
             case 'A':
-                printf("A");
+                // printf("A");
                 getchar();
                 scanf("%d", &numOfNodes);
-                scanf("%s", &n);
+                scanf("%c", &n);
+                scanf("%c", &n);
+                i = 0;
                 for (i = 0; i < numOfNodes; i++) {
-
                     scanf("%d", &id);
                     if (i == 0) {
                         graph = create_node(id);
@@ -37,7 +39,8 @@ int main() {
                         insert_node_cmd(&graph, current_node);
                     }
                     // create the edges
-                    while (scanf("%d", &dest)) {
+                    succeed=scanf("%d",&dest);
+                    while (succeed) {
                         scanf("%d", &weight);
                         pnode tmp = graph;
                         // check if dest node exists
@@ -59,12 +62,20 @@ int main() {
                             insert_node_cmd(&graph, node_dst);
                             add(&current_node->edges, node_dst, weight);
                         }
+                        if(getchar()==' '){
+                            succeed=scanf("%d",&dest);
+                        }
+                        else{
+                            break;
+                        }
                     }
-                    read = getchar();
+                    read = getc(stdin);
                     if (read != 'n') {
                         break;
                     }
                 }
+
+                printGraph_cmd(graph);
                 break;
             case 'B':
                 printf("B");
@@ -92,6 +103,6 @@ int main() {
         }
     }
 
-
+    free(graph);
     return 0;
 }

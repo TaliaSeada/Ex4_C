@@ -63,7 +63,13 @@ void delete_node_cmd(pnode* head, pnode node){
 }
 
 void printGraph_cmd(pnode head){
-
+    while(head){
+        printf("%d (", head -> node_num);
+        print_list(head -> edges);
+        printf(") -> ");
+        head = head->next;
+    }
+    printf("||\n");
 }
 
 void deleteGraph_cmd(pnode* head){
