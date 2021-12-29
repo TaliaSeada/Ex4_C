@@ -10,7 +10,7 @@ typedef struct GRAPH_NODE_ {
     struct GRAPH_NODE_ *next;
 } node, *pnode; //head of the list
 
-pnode create_node(int id);
+node* create_node(int id);
 void build_graph_cmd(pnode *head);
 void insert_node_cmd(pnode *head, pnode node);
 void delete_node_cmd(pnode *head, pnode node);

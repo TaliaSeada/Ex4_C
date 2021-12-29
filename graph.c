@@ -4,8 +4,8 @@
 
 //typedef struct GRAPH_NODE_ *pnode ;
 
-pnode create_node(int id) {
-    node* n = (node *) malloc(sizeof(pnode));
+node* create_node(int id) {
+    node* n = (node *) malloc(sizeof(node));
     if (n) {
         n->node_num = id;
         n->edges = NULL;
@@ -14,7 +14,7 @@ pnode create_node(int id) {
     return n;
 }
 
-void insert_node_cmd(pnode* head, pnode node){
+void insert_node_cmd(node** head, pnode node){
     if(!node){
         printf("no memory!");
         return;
