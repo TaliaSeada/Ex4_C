@@ -3,7 +3,7 @@
 #include "Edge.c"
 
 int main() {
-    //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 t
+    //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 D 5 t
     node* graph = NULL;
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
@@ -70,6 +70,7 @@ int main() {
                         break;
                     }
                 }
+                printf("create graph: ");
                 printGraph_cmd(graph);
                 break;
             case 'B':
@@ -128,16 +129,17 @@ int main() {
                     scanf("%d", &weight);
                     read = getchar();
                 }
+                printf("added node - %d: ", id);
                 printGraph_cmd(graph);
                 break;
             case 'D':
                 read = getchar();
-                int s;
                 int node;
                 scanf("%d", &node);
                 pnode n = create_node(node);
                 delete_node_cmd(&graph, n);
-                // printGraph_cmd(graph);
+                printf("deleted node - %d: ", node);
+                printGraph_cmd(graph);
                 free(n);
                 read = getchar();
                 read = getchar();
