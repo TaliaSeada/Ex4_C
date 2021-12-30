@@ -3,8 +3,8 @@
 #include "Edge.c"
 
 int main() {
-    //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 t
-    node *graph = NULL;
+    //   A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 t
+    node* graph = NULL;
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
     int succeed;
@@ -73,18 +73,74 @@ int main() {
                 printGraph_cmd(graph);
                 break;
             case 'B':
-                printf("B");
+                // B 5 0 4 2 1
                 read = getchar();
+                int id;
+                scanf("%d", &id);
 
+                pnode current_node = graph;
+                // check if node already exists
+                while (current_node) {
+                    if (current_node->node_num == id) {
+                        break;
+                    }
+                    current_node = current_node->next;
+                }
+                // if not create it
+                if (!current_node) {
+                    current_node = create_node(id);
+                    insert_node_cmd(&graph, current_node);
+                }
+                // if it exists, override the out edges with the new given ones
+                pedge edge_tmp = current_node -> edges;
+                while(edge_tmp){
+                    pedge remove_edges = edge_tmp;
+                    edge_tmp = edge_tmp -> next;
+                    free(remove_edges);
+                }
+                current_node ->edges = NULL;
+
+                // create new edges:
+                int destN;
+                int weight;
+                scanf("%d", &destN);
+                scanf("%d", &weight);
+
+                while(read == 32){
+                    pnode dest_node = graph;
+                    // check if DestNode exists
+                    while (dest_node) {
+                        if (dest_node->node_num == destN) {
+                            break;
+                        }
+                        dest_node = dest_node->next;
+                    }
+                    // if not create it
+                    if (!dest_node) {
+                        dest_node = create_node(destN);
+                        insert_node_cmd(&graph, dest_node);
+                    }
+
+                    // add the new edge to the new node
+                    add(&current_node->edges, dest_node, weight);
+
+                    scanf("%d", &destN);
+                    scanf("%d", &weight);
+                    read = getchar();
+                }
+                printGraph_cmd(graph);
                 break;
             case 'D':
                 read = getchar();
+                int s;
                 int node;
                 scanf("%d", &node);
                 pnode n = create_node(node);
                 delete_node_cmd(&graph, n);
-                printGraph_cmd(graph);
+                // printGraph_cmd(graph);
                 free(n);
+                read = getchar();
+                read = getchar();
                 break;
             case 'S':
                 printf("S");
@@ -96,11 +152,7 @@ int main() {
                 break;
             default:
                 printf("wrong");
-                read=-1;
                 break;
-        }
-        if(read==-1){
-            break;
         }
     }
 
