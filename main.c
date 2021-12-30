@@ -3,7 +3,7 @@
 #include "Edge.c"
 
 int main() {
-    //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 D 5 t
+    //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 D 5 B 0 5 3 2 6 t
     node* graph = NULL;
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
