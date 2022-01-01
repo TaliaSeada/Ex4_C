@@ -158,10 +158,10 @@ int main() {
                 scanf("%d",&dest);
                 short_path=shortest_path(&graph, src, dest);
                 if(first==0){
-                    printf("Dijsktra shortest path: %d\n",short_path);
+                    printf("Dijsktra shortest path: %d \n",short_path);
                     first=1;
                 } else{
-                    printf("Dijsktra shortest path: %d\n",short_path);
+                    printf("Dijsktra shortest path: %d \n",short_path);
                 }
                 getchar();
                 read = getchar();
@@ -172,10 +172,10 @@ int main() {
                 int tsp;
                 tsp = TSP(&graph);
                 if(first==0){
-                    printf("TSP shortest path: %d\n",tsp);
+                    printf("TSP shortest path: %d \n",tsp);
                     first=1;
                 } else{
-                    printf("TSP shortest path: %d\n",tsp);
+                    printf("TSP shortest path: %d \n",tsp);
                 }
                 getchar();
                 read = getchar();
