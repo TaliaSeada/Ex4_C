@@ -4,6 +4,6 @@
 #include "graph.h"
 
 int shortest_path(pnode* , int, int);
-int TSP(pnode*, int [], int);
+int TSP(pnode*);
 
 #endif

@@ -61,7 +61,14 @@ int shortest_path(pnode* head, int src, int dest){
     }
     return dist[dest];
 }
-int TSP(pnode *head, int nodes[],int size){
+int TSP(pnode *head){
+    int size = 0;
+    scanf("%d", &size);
+    int nodes[size];
+    int j;
+    for (j = 0; j < size; j++) {
+        scanf("%d", &nodes[j]);
+    }
     int min_dist=INT_MAX;
     pnode tmp = *head;
     pnode point_to_list = *head;

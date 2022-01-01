@@ -169,15 +169,8 @@ int main() {
             case 'T': {
 //                printf("T");
                 getchar();
-                int size = 0;
-                scanf("%d", &size);
-                int arr[size];
-                int j;
-                for (j = 0; j < size; j++) {
-                    scanf("%d", &arr[j]);
-                }
                 int tsp;
-                tsp = TSP(&graph, &arr, size);
+                tsp = TSP(&graph);
                 if(first==0){
                     printf("TSP:%d",tsp);
                     first=1;
