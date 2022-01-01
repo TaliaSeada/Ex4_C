@@ -16,7 +16,7 @@ int shortest_path(pnode* head, int src, int dest){
     int visited [node_max_size+1];
     int i;
     for(i = 0; i < node_max_size+1; i++){
-        dist[i] = (INT_MAX-1);
+        dist[i] = (INT_MAX);
         visited[i] = -1;
     }
     tmp = *head;
@@ -104,6 +104,9 @@ int TSP(pnode *head, int nodes[],int size){
         if(current<min_dist){
             min_dist=current;
         }
+    }
+    if(min_dist==INT_MAX){
+        return -1;
     }
     return min_dist;
 }

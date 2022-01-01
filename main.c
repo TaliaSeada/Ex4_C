@@ -135,7 +135,7 @@ int main() {
                 printGraph_cmd(graph);
                 break;
             case 'D':
-                read = getchar();
+                getchar();
                 int node;
                 scanf("%d", &node);
                 pnode n = create_node(node);
@@ -143,21 +143,23 @@ int main() {
                 printf("deleted node - %d: ", node);
                 printGraph_cmd(graph);
                 free(n);
-                read = getchar();
+                getchar();
                 read = getchar();
                 break;
             case 'S':
                 printf("S");
-                read = getchar();
+                getchar();
                 int src, dest, short_path;
                 scanf("%d",&src);
                 scanf("%d",&dest);
                 short_path=shortest_path(&graph, src, dest);
                 printf("%d",short_path);
+                getchar();
+                read = getchar();
                 break;
             case 'T': {
                 printf("T");
-                read = getchar();
+                getchar();
                 int size = 0;
                 scanf("%d", &size);
                 int arr[size];
@@ -168,6 +170,8 @@ int main() {
                 int tsp;
                 tsp = TSP(&graph, &arr, size);
                 printf("%d",tsp);
+                getchar();
+                read = getchar();
                 break;
             }
             default:
