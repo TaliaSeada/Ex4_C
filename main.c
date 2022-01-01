@@ -5,7 +5,7 @@
 #include "algo.h"
 
 int main() {
-    //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 D 5 B 0 5 3 2 6 t
+    //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 n 3 T 3 2 1 3 S 2 0
     node* graph = NULL;
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
@@ -155,10 +155,21 @@ int main() {
                 short_path=shortest_path(&graph, src, dest);
                 printf("%d",short_path);
                 break;
-            case 'T':
+            case 'T': {
                 printf("T");
                 read = getchar();
+                int size = 0;
+                scanf("%d", &size);
+                int arr[size];
+                int j;
+                for (j = 0; j < size; j++) {
+                    scanf("%d", &arr[j]);
+                }
+                int tsp;
+                tsp = TSP(&graph, &arr, size);
+                printf("%d",tsp);
                 break;
+            }
             default:
                 printf("wrong");
                 break;

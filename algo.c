@@ -56,11 +56,54 @@ int shortest_path(pnode* head, int src, int dest){
         }
         visited[min_node_id]=-1;
     }
-    if(dist[dest]==INT_MAX){
+    if(dist[dest]==INT_MAX || dist[dest]==INT_MIN){
         return -1;
     }
     return dist[dest];
 }
-int TSP(pnode *head, int *nodes){
-    return 0;
+int TSP(pnode *head, int nodes[],int size){
+    int min_dist=INT_MAX;
+    pnode tmp = *head;
+    pnode point_to_list = *head;
+    int i;
+    for(i=0; i<size;i++){
+        int current=0;
+        int src_id = nodes[i];
+        int nodes_temp[size];
+        int j;
+        for(j=0;j<size;j++){
+            nodes_temp[j]=nodes[j];
+        }
+        nodes_temp[i]=-1;
+        while(1){
+            int ans;
+            int current_dest;
+            int min_current=INT_MAX;
+            for(j=0;j<size;j++) {
+                if (nodes_temp[j] != -1) {
+                    tmp = *head;
+                    ans = shortest_path(&tmp, src_id,nodes_temp[j]);
+                    if(ans<min_current && ans!=-1 && ans>0){
+                        min_current=ans;
+                        current_dest=j;
+                    }
+                    if(ans<0 || ans == -1){
+                        min_current=INT_MAX;
+                        current=INT_MAX;
+                        break;
+                    }
+                }
+            }
+            if(min_current==INT_MAX){
+                break;
+            }
+            current+=min_current;
+            nodes_temp[current_dest]=-1;
+            src_id=nodes[current_dest];
+        }
+        if(current<min_dist){
+            min_dist=current;
+        }
+    }
+    return min_dist;
 }
