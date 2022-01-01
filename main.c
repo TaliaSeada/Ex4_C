@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "graph.c"
 #include "Edge.c"
-#include "algo.h"
+#include "algo.c"
 
 int main() {
     //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 n 3 T 3 2 1 3 S 2 0
@@ -158,10 +158,10 @@ int main() {
                 scanf("%d",&dest);
                 short_path=shortest_path(&graph, src, dest);
                 if(first==0){
-                    printf("%d",short_path);
+                    printf("Dijsktra shortest path: %d",short_path);
                     first=1;
                 } else{
-                    printf("\n%d",short_path);
+                    printf("\nDijsktra shortest path: %d",short_path);
                 }
                 getchar();
                 read = getchar();
@@ -172,10 +172,10 @@ int main() {
                 int tsp;
                 tsp = TSP(&graph);
                 if(first==0){
-                    printf("TSP:%d",tsp);
+                    printf("TSP shortest path: %d",tsp);
                     first=1;
                 } else{
-                    printf("\nTSP:%d",tsp);
+                    printf("\nTSP shortest path: %d",tsp);
                 }
                 getchar();
                 read = getchar();

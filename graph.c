@@ -103,11 +103,3 @@ void deleteGraph_cmd(pnode* head){
         delete_node_cmd(head, *head);
     }
 }
-
-void shortsPath_cmd(pnode head){
-
-}
-
-void TSP_cmd(pnode head){
-
-}
