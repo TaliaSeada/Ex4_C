@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "graph.c"
 #include "Edge.c"
+#include "algo.h"
 
 int main() {
     //A 4 n 0 2 5 3 3 n 2 0 4 1 1 n 1 3 7 0 2 D 2 B 5 0 4 2 1 D 5 B 0 5 3 2 6 t
@@ -147,6 +149,11 @@ int main() {
             case 'S':
                 printf("S");
                 read = getchar();
+                int src, dest, short_path;
+                scanf("%d",&src);
+                scanf("%d",&dest);
+                short_path=shortest_path(&graph, src, dest);
+                printf("%d",short_path);
                 break;
             case 'T':
                 printf("T");
