@@ -10,10 +10,14 @@ int main() {
     int read=getchar();
     int numOfNodes, i, id, dest, weight;
     int succeed;
+    int first=0;
     char n;
     while(65<=read && read<=90) {
         switch (read) {
             case 'A':
+                if(graph!=NULL){
+                    deleteGraph_cmd(&graph);
+                }
                 getchar();
                 scanf("%d", &numOfNodes);
                 scanf("%c", &n);
@@ -72,8 +76,8 @@ int main() {
                         break;
                     }
                 }
-                printf("create graph: ");
-                printGraph_cmd(graph);
+//                printf("create graph: ");
+//                printGraph_cmd(graph);
                 break;
             case 'B':
                 // B 5 0 4 2 1
@@ -131,8 +135,8 @@ int main() {
                     scanf("%d", &weight);
                     read = getchar();
                 }
-                printf("added node - %d: ", id);
-                printGraph_cmd(graph);
+//                printf("added node - %d: ", id);
+//                printGraph_cmd(graph);
                 break;
             case 'D':
                 getchar();
@@ -140,25 +144,30 @@ int main() {
                 scanf("%d", &node);
                 pnode n = create_node(node);
                 delete_node_cmd(&graph, n);
-                printf("deleted node - %d: ", node);
-                printGraph_cmd(graph);
+//                printf("deleted node - %d: ", node);
+//                printGraph_cmd(graph);
                 free(n);
                 getchar();
                 read = getchar();
                 break;
             case 'S':
-                printf("S");
+//                printf("S");
                 getchar();
                 int src, dest, short_path;
                 scanf("%d",&src);
                 scanf("%d",&dest);
                 short_path=shortest_path(&graph, src, dest);
-                printf("%d",short_path);
+                if(first==0){
+                    printf("%d",short_path);
+                    first=1;
+                } else{
+                    printf("\n%d",short_path);
+                }
                 getchar();
                 read = getchar();
                 break;
             case 'T': {
-                printf("T");
+//                printf("T");
                 getchar();
                 int size = 0;
                 scanf("%d", &size);
@@ -169,7 +178,12 @@ int main() {
                 }
                 int tsp;
                 tsp = TSP(&graph, &arr, size);
-                printf("%d",tsp);
+                if(first==0){
+                    printf("TSP:%d",tsp);
+                    first=1;
+                } else{
+                    printf("\nTSP:%d",tsp);
+                }
                 getchar();
                 read = getchar();
                 break;
